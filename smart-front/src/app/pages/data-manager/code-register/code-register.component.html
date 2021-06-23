@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="title">
+      <h2>コード登録機能(ポッポアッポ)</h2>
+    </div>
+    <div class="card shadow">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered table-sdiviped"  width="100%" cellspacing="0">
+              <tbody>
+                <tr>
+                  <td>CodeId</td>
+                  <td>
+                    <div class="input-group mb-3">
+                      <input class="form-control" type="text"  [(ngModel)]="codeValueMasterVO.codeId">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>WordId</td>
+                  <td>
+                    <div class="input-group mb-3">
+                      <input class="form-control" type="text" [(ngModel)]="codeValueMasterVO.wordId" disabled>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>CodeNo</td>
+                  <td>
+                    <div class="input-group mb-3">
+                      <input class="form-control" type="text" [(ngModel)]="codeValueMasterVO.codeNo">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>PhysicalName</td>
+                  <td>
+                    <div class="input-group mb-3">
+                      <input class="form-control" type="text" [(ngModel)]="codeValueMasterVO.valuePhysicalName">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>LogicName</td>
+                  <td>
+                    <div class="input-group mb-3">
+                      <input class="form-control" type="text" [(ngModel)]="codeValueMasterVO.valueLogicName">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Description</td>
+                  <td>
+                    <div class="input-group mb-3">
+                      <input class="form-control" type="text" [(ngModel)]="codeValueMasterVO.description">
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    <div class="card">
+      <div class="card-body button">
+        <div class="table-responsive">
+          <div class="bt-button signin-tb">
+            <button class="btn btn-primary" type="submit" (click)="registerCode(wordId)">登録</button>
+          </div>
+          <div class="bt-button delete-tb">
+            <button class="btn btn-primary" type="submit" (click)="clear(wordId)">キャンセル</button>
+          </div>
+        </div>
+      </div>
+      <div *ngFor='let msg of errorMsgs' style="color:red">{{msg}}</div>
+    </div>
+  </div>
+  

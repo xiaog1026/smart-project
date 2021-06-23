@@ -1,0 +1,242 @@
+<div class="container">
+    <div class="title">
+      <h2>データ基本情報一覧</h2>
+    </div>
+    <div class="card shadow">
+      <div class="card-body">
+        <h4>データ基本情報</h4>
+        <div class="table-responsive">
+          <table class="table table-bordered table-sdiviped" width="100%" cellspacing="0">
+            <thead class="tb-thead-backgroundcolor">
+              <tr>
+                <td class="tb-thead-color" width="20%">データー名</td>
+                <td class="tb-thead-color" width="20%">日本語名</td>
+                <td class="tb-thead-color" width="10%">属性</td>
+                <td class="tb-thead-color" width="10%">桁数</td>
+                <td class="tb-thead-color" width="10%">小数桁</td>
+                <td class="tb-thead-color" width="20%">説明</td>  
+                <td class="tb-thead-color" width="12%">コード</td>
+
+              </tr>
+            </thead>
+            <tbody class="tb-tbody-backgroundcolor">
+              <tr>
+                <td>{{wordDictionaryVO.physicalName}}</td>
+                <td>{{wordDictionaryVO.logicName}}</td>
+                <td>{{wordDictionaryVO.wordType}}</td>
+                <td>{{wordDictionaryVO.wordLength}}</td>
+                <td>{{wordDictionaryVO.wordDecimal}}</td>
+                <td>{{wordDictionaryVO.description}}</td>
+                <td>{{wordDictionaryVO.arrayFlg}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card shadow">
+      <div class="card-body">
+        <h4>コード情報</h4>
+        <div class="table-responsive">
+          <table class="table table-bordered table-sdiviped table-sm" width="100%">
+            <thead class="tb-thead-backgroundcolor">
+              <tr>
+                <td width="3%">
+                  <div class="form-check">
+                    <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1"
+                      aria-label="..." (click)="toSelect(CodeValueMasterList)">
+                  </div> 
+                </td>
+                <td class="tb-thead-color" width="10%">CodeID</td>
+                <td class="tb-thead-color" width="10%">WordID</td>
+                <td class="tb-thead-color" width="20%">PhysicalCodeName</td>
+                <td class="tb-thead-color" width="20%">LogicCodeName</td>
+                <td class="tb-thead-color" width="20%">Description</td>
+              </tr>
+            </thead>
+            <tbody class="tb-tbody-backgroundcolor" *ngFor="let codeList of CodeValueMasterList">
+              <tr>
+                <td>
+                  <div class="form-check">
+                    <input class="form-check-input position-static" type="checkbox" id="childblankCheckbox" value="option1"
+                      aria-label="...">
+                  </div>
+                </td>
+                <td><a href="javascript:void(0)" class="" (click)="openModal2(codeList.codeId,popup2)">{{codeList.codeId}}</a></td>
+                <td>{{codeList.wordId}}</td>
+                <td>{{codeList.valuePhysicalName}}</td>
+                <td>{{codeList.valueLogicName}}</td>
+                <td>{{codeList.description}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body button">
+        <div class="table-responsive">
+          <div class="bt-button signin-tb">
+            <button class="btn btn-primary" (click)="openModal(wordDictionaryVO.wordId,popup)">コード登録</button>
+          </div>
+          <div class="bt-button signin-tb">
+            <button class="btn btn-primary">コード削除</button>
+          </div>
+          <div class="bt-button signin-tb">
+            <button class="btn btn-primary" (click)="dataBack()">戻る</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<ng-template #popup>
+  <div class="card shadow" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered table-sdiviped"  width="100%" cellspacing="0">
+          <tbody>
+            <tr>
+              <td>CodeId</td>
+              <td>
+                <div class="input-group mb-3">
+                  <input class="form-control" type="text"  [(ngModel)]="codeValueMasterVO.codeId">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>WordId</td>
+              <td>
+                <div class="input-group mb-3">
+                  <input class="form-control" type="text" [(ngModel)]="codeValueMasterVO.wordId" disabled>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>CodeNo</td>
+              <td>
+                <div class="input-group mb-3">
+                  <input class="form-control" type="text" [(ngModel)]="codeValueMasterVO.codeNo">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>PhysicalName</td>
+              <td>
+                <div class="input-group mb-3">
+                  <input class="form-control" type="text" [(ngModel)]="codeValueMasterVO.valuePhysicalName">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>LogicName</td>
+              <td>
+                <div class="input-group mb-3">
+                  <input class="form-control" type="text" [(ngModel)]="codeValueMasterVO.valueLogicName">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Description</td>
+              <td>
+                <div class="input-group mb-3">
+                  <input class="form-control" type="text" [(ngModel)]="codeValueMasterVO.description">
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<div class="card">
+  <div class="card-body button">
+    <div class="table-responsive">
+      <div class="bt-button signin-tb">
+        <button class="btn btn-primary" type="submit" (click)="registerCode(wordId)">登録</button>
+      </div>
+      <div class="bt-button delete-tb">
+        <button class="btn btn-primary" type="submit" (click)="clear()">キャンセル</button>
+      </div>
+    </div>
+  </div>
+  <div *ngFor='let msg of errorMsgs' style="color:red">{{msg}}</div>
+</div>
+</ng-template>
+
+<ng-template #popup2>
+  <div class="card shadow">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered table-sdiviped"  width="100%" cellspacing="0">
+          <tbody>
+            <tr>
+              <td>CodeId</td>
+              <td>
+                <div class="input-group mb-3">
+                  <input class="form-control" type="text"  [(ngModel)]="codeValueMasterVO.codeId" disabled>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>WordId</td>
+              <td>
+                <div class="input-group mb-3">
+                  <input class="form-control" type="text" [(ngModel)]="codeValueMasterVO.wordId" disabled>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>CodeNo</td>
+              <td>
+                <div class="input-group mb-3">
+                  <input class="form-control" type="text" [(ngModel)]="codeValueMasterVO.codeNo">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>PhysicalName</td>
+              <td>
+                <div class="input-group mb-3">
+                  <input class="form-control" type="text" [(ngModel)]="codeValueMasterVO.valuePhysicalName">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>LogicName</td>
+              <td>
+                <div class="input-group mb-3">
+                  <input class="form-control" type="text" [(ngModel)]="codeValueMasterVO.valueLogicName">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Description</td>
+              <td>
+                <div class="input-group mb-3">
+                  <input class="form-control" type="text" [(ngModel)]="codeValueMasterVO.description">
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<div class="card">
+  <div class="card-body button">
+    <div class="table-responsive">
+      <div class="bt-button signin-tb">
+        <button class="btn btn-primary" type="submit" (click)="modifyCode()">修改</button>
+      </div>
+      <div class="bt-button signin-tb">
+        <button class="btn btn-primary" type="submit" (click)="deleteCode()">削除</button>
+      </div>
+      <div class="bt-button delete-tb">
+        <button class="btn btn-primary" type="submit" (click)="clear(codeValueMasterVO.wordId)">キャンセル</button>
+      </div>
+    </div>
+  </div>
+  <div *ngFor='let msg of errorMsgs' style="color:red">{{msg}}</div>
+</div>
+</ng-template>

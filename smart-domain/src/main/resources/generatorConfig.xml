@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<context id="context1" targetRuntime="MyBatis3">
+		<jdbcConnection
+			connectionURL="jdbc:postgresql://localhost:5432/postgres"
+			driverClass="org.postgresql.Driver"
+			password="postgres"
+			userId="postgres">
+		</jdbcConnection>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<javaModelGenerator
+			targetPackage="jp.co.project.smart.autogen.model"
+			targetProject="smart-domain">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="jp.co.project.smart.autogen.xml"
+			targetProject="smart-domain">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator
+			targetPackage="jp.co.project.smart.autogen.mapper"
+			targetProject="smart-domain" type="XMLMAPPER" />
+			
+<!-- 		<table tableName="table_master">
+		</table> -->
+		
+		<table tableName="word_dictionary">
+		</table>		
+		
+		<table tableName="column_master">
+		</table>
+		
+		<table tableName="code_master">
+		</table>
+		
+		<table tableName="code_value_master">
+		</table>		
+		
+	</context>
+</generatorConfiguration>

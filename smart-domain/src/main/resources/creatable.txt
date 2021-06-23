@@ -1,0 +1,12 @@
+
+CREATE TABLE public.user_info
+(
+    id serial,
+    age integer,
+    firstname character varying(255) COLLATE pg_catalog."default",
+    lastname character varying(255) COLLATE pg_catalog."default",
+    password character varying(255) COLLATE pg_catalog."default",
+    salary integer,
+    username character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT user_info_pkey PRIMARY KEY (id)
+)
